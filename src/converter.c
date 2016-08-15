@@ -3,9 +3,11 @@
 
 int to_arabic(char roman[])
 {
+	int total = 0;
 	if (strncmp(roman, "V", 1) == 0)
 	{
-		return 5;
+		total += 5;
+		roman++;
 	}
-	return strlen(roman);
+	return total + strlen(roman);
 }
