@@ -1,18 +1,28 @@
 #include <string.h>
 #include "converter.h"
 
+typedef struct Conversion {
+	char* roman;
+	int arabic;
+} Conversion;
+
+Conversion conversions[] = {
+	{"X", 10},
+	{"V", 5},
+	{"I", 1},
+	{"END", 0}
+};
+
 int to_arabic(char roman[])
 {
 	int total = 0;
-	if (strncmp(roman, "X", 1) == 0)
+	for (Conversion* conversion = conversions; conversion->arabic != 0; conversion++)
 	{
-		total += 10;
-		roman++;
+		while (strncmp(roman, conversion->roman, 1) == 0)
+		{
+			total += conversion->arabic;
+			roman++;
+		}
 	}
-	if (strncmp(roman, "V", 1) == 0)
-	{
-		total += 5;
-		roman++;
-	}
-	return total + strlen(roman);
+	return total;
 }
