@@ -7,6 +7,12 @@ START_TEST(i_returns_one)
 }
 END_TEST
 
+START_TEST(ii_returns_two)
+{
+	ck_assert_int_eq(to_arabic("II"), 2);
+}
+END_TEST
+
 Suite * converter_suite(void)
 {
 	Suite *s;
@@ -18,6 +24,7 @@ Suite * converter_suite(void)
 	tc_to_arabic = tcase_create("to_arabic");
 
 	tcase_add_test(tc_to_arabic, i_returns_one);
+	tcase_add_test(tc_to_arabic, ii_returns_two);
 	suite_add_tcase(s, tc_to_arabic);
 
 	return s;
