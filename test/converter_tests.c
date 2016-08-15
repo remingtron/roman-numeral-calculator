@@ -31,6 +31,12 @@ START_TEST(x_returns_ten)
 }
 END_TEST
 
+START_TEST(iv_returns_four)
+{
+	ck_assert_int_eq(to_arabic("IV"), 4);
+}
+END_TEST
+
 Suite * converter_suite(void)
 {
 	Suite *s;
@@ -46,6 +52,7 @@ Suite * converter_suite(void)
 	tcase_add_test(tc_to_arabic, v_returns_five);
 	tcase_add_test(tc_to_arabic, vi_returns_six);
 	tcase_add_test(tc_to_arabic, x_returns_ten);
+	tcase_add_test(tc_to_arabic, iv_returns_four);
 	suite_add_tcase(s, tc_to_arabic);
 
 	return s;

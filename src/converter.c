@@ -9,6 +9,7 @@ typedef struct Conversion {
 Conversion conversions[] = {
 	{"X", 10},
 	{"V", 5},
+	{"IV", 4},
 	{"I", 1},
 	{"END", 0}
 };
@@ -18,10 +19,11 @@ int to_arabic(char roman[])
 	int total = 0;
 	for (Conversion* conversion = conversions; conversion->arabic != 0; conversion++)
 	{
-		while (strncmp(roman, conversion->roman, 1) == 0)
+		int roman_length = strlen(conversion->roman);
+		while (strncmp(roman, conversion->roman, roman_length) == 0)
 		{
 			total += conversion->arabic;
-			roman++;
+			roman += roman_length;
 		}
 	}
 	return total;
